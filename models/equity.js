@@ -4,7 +4,8 @@ const Schema=mongoose.Schema
 const Equity=new Schema(
     {
         symbol:{type:String,required:true},
-        threads:[{type:Schema.Types.ObjectId,ref:'Thread',default:''}]
+        threads:[{type:Schema.Types.ObjectId,ref:'Thread',default:''}],
+        saves:{type:Number,required:true,default:0}
     },
     {timestamps:true}
 )

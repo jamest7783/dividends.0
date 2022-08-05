@@ -1,4 +1,5 @@
 const yahooFinance=require('yahoo-finance')
+let googleNewsAPI = require("google-news-json");
 const Equity=require('../models/equity')
 
 
@@ -24,7 +25,14 @@ const getSummary=async (req,res)=>{
     })
 }
 
+const getSymbolNews=async (req,res)=>{
+    let {symbol}=req.body
+    let news=await googleNewsAPI.getNews(googleNewsAPI.SEARCH,symbol,"en-GB")
+    res.status(200).json(news) 
+}
+
 module.exports={
     getHistoricalData,
-    getSummary
+    getSummary,
+    getSymbolNews
 }

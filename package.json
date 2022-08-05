@@ -21,6 +21,7 @@
   "homepage": "https://github.com/jamest7783/dividends#readme",
   "dependencies": {
     "express": "^4.18.1",
+    "google-news-json": "^2.1.0",
     "mongoose": "^6.5.1",
     "yahoo-finance": "^0.3.7"
   },
