@@ -31,8 +31,13 @@ const getSymbolNews=async (req,res)=>{
     res.status(200).json(news) 
 }
 
+const getCommentary=async (req,res)=>{
+    let {symbol}=req.body
+}
+
 module.exports={
     getHistoricalData,
     getSummary,
-    getSymbolNews
+    getSymbolNews,
+    getCommentary
 }
