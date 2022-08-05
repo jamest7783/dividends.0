@@ -11,13 +11,24 @@ const getHistoricalData=async (req,res)=>{
     },function(error,quotes){
         if(error){throw error}
         !quotes[0]?res.status(200).json({alert:'Ticker not found.'}):
-        res.status(200).json({quotes})
+        res.status(200).json(quotes)
+    })
+}
+
+const getSummary=async (req,res)=>{
+    let {symbol}=req.body
+    await yahooFinance.quote({
+        symbol,modules:['price','summaryDetail']
+    },function(error,quotes){
+        if(error){throw error}
+        !quotes?res.status(200).json({alert:'Ticker not found.'}):
+        res.status(200).json(quotes)
     })
 }
 
 
 
-
 module.exports={
-    getHistoricalData
+    getHistoricalData,
+    getSummary
 }
