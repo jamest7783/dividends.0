@@ -4,8 +4,7 @@ const router=Router()
 const {equities}=require('../controllers')
 
 router.get('/',(req,res)=>res.send('Hit Root!'))
-router.get('/historical',equities.getData)
-router.get('/historical/:id',equities.getSingleTicker)
+router.get('/historical',equities.getHistoricalData)
 
 module.exports=router
 

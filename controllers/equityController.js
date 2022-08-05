@@ -1,36 +1,23 @@
-const yF=require('yahoo-finance')
+const yahooFinance=require('yahoo-finance')
 const Equity=require('../models/equity')
 
-const getData=async (req,res)=>{
-    try{
-        await yF.historical({
-            symbol:'AAPL',
-            from:'2021-01-01',
-            to:'2021-07-01',
-            period:'d'
-        },function(err,quotes){
-            res.send(quotes)
-        })
-    }catch(error){
-        return res.status(500).json('error',error.message)
-    }
+
+
+
+const getHistoricalData=async (req,res)=>{
+    let {symbol,from,to,period}=req.body 
+    await yahooFinance.historical({
+        symbol,from,to,period
+    },function(error,quotes){
+        if(error){throw error}
+        !quotes[0]?res.status(200).json({alert:'Ticker not found.'}):
+        res.status(200).json({quotes})
+    })
 }
 
-const getSingleTicker=async (req,res)=>{
-    try{
-        await yF.historical({
-            symbol:req.params.id,
-            from:'2021-01-01',
-            to:'2021-07-01',
-            period:'d'
-        },function(err,quotes){
-            res.send(quotes)
-        })
-    }catch(error) {
-        return res.status(500).json('error',error.message)
-    }
-}
+
+
+
 module.exports={
-    getData,
-    getSingleTicker
+    getHistoricalData
 }
