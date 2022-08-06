@@ -2,7 +2,7 @@ const yahooFinance=require('yahoo-finance')
 let googleNewsAPI = require("google-news-json");
 const Equity=require('../models/equity')
 
-
+/* get ticker historical data */
 const getHistoricalData=async (req,res)=>{
     let {symbol,from,to,period}=req.body 
     await yahooFinance.historical({
@@ -14,6 +14,7 @@ const getHistoricalData=async (req,res)=>{
     })
 }
 
+/* get ticker snapshot summary */
 const getSummary=async (req,res)=>{
     let {symbol}=req.body
     await yahooFinance.quote({
@@ -25,19 +26,35 @@ const getSummary=async (req,res)=>{
     })
 }
 
+/* get current ticker news */
 const getSymbolNews=async (req,res)=>{
     let {symbol}=req.body
     let news=await googleNewsAPI.getNews(googleNewsAPI.SEARCH,symbol,"en-GB")
     res.status(200).json(news) 
 }
 
-const getCommentary=async (req,res)=>{
+
+const getSocials=async (req,res)=>{
     let {symbol}=req.body
+    let socials=await Equity.find()
+    res.status(200).json(socials)
 }
+
+
+const findOrCreateSocials=async (req,res)=>{
+    let {symbol}=req.body
+    let socials=await Equity.find({symbol})
+    res.status(200).json(socials)
+}
+
+
+Equity.f
+
+
 
 module.exports={
     getHistoricalData,
     getSummary,
     getSymbolNews,
-    getCommentary
-}
+    findOrCreateSocials
+} 

@@ -5,9 +5,9 @@ db.on('error',console.error.bind(console,'MongoDB connection error...'))
 
 const main=async ()=>{
     const equities=[
-        {ticker:'AAPL'},
-        {ticker:'TSLA'},
-        {ticker:'VUG'}
+        {symbol:'AAPL'},
+        {symbol:'TSLA'},
+        {symbol:'VUG'}
     ]
 
     await Equity.insertMany(equities)

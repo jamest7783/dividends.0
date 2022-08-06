@@ -5,7 +5,7 @@ const Equity=new Schema(
     {
         symbol:{type:String,required:true},
         threads:[{type:Schema.Types.ObjectId,ref:'Thread',default:''}],
-        follows:{type:Number,required:true,default:0}
+        follows:[{type:Schema.Types.ObjectId,ref:'Account',default:''}]
     },
     {timestamps:true}
 )
