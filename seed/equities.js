@@ -4,6 +4,8 @@ const Equity=require('../models/equity')
 db.on('error',console.error.bind(console,'MongoDB connection error...'))
 
 const main=async ()=>{
+
+    Equity.collection.drop()
     const equities=[
         {symbol:'AAPL'},
         {symbol:'TSLA'},
