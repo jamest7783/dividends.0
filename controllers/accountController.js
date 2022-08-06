@@ -1,8 +1,6 @@
 const Account=require('../models/account')
 
 
-
-/* create or find */
 const getAllAcounts=async (req,res)=>{
     const allAccounts=await Account.find()
     res.status(200).json(allAccounts)
@@ -18,34 +16,24 @@ const createAccount=async (req,res)=>{
     const newAccount=await Account.create({name,icon})
     res.status(200).json(newAccount)
 }
-
-
-
-
-/*const createAccount=async (name,icon,reputation,threads,replies,watchlist,res)=>{
-    const newAccount=await Account.create({
-        name,icon,reputation,threads,replies,watchlist})
-    res.status(200).json(newAccount)
-}*/
-const getOrCreateAccount=async (req,res)=>{
-    const {name,icon,reputation,threads,replies,watchlist}=req.body
-    const foundAccount=await Account.find({
-        name,icon,reputation,threads,replies,watchlist})
-    !foundAccount[0]?createAccount(name,icon,reputation,threads,replies,watchlist,res):
-    res.status(200).json(foundAccount)
+const updateAccountName=async (req,res)=>{
+    const {id}=req.params
+    const accountWithUpdatedName=await Account.findByIdAndUpdate(
+        id,req.body,{new:true})
+    res.status(200).json({accountWithUpdatedName})
 }
 
-/* update */
-const updateAccount=async (req,res)=>{
-    const body= req.body 
-    res.status(200).json({name:"Larry"})
-}
+// name,icon,reputation,threads,replies,watchlist
+
+
+
 
 module.exports={
     getAllAcounts,
     getAccountById,
     createAccount,
-    updateAccount
+    updateAccountName
+
 }
 
 
