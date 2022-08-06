@@ -33,22 +33,20 @@ const getSymbolNews=async (req,res)=>{
     res.status(200).json(news) 
 }
 
-
-const getSocials=async (req,res)=>{
-    let {symbol}=req.body
-    let socials=await Equity.find()
+const createSocials=async (symbol,res)=>{
+    let socials=await Equity.create({symbol})
     res.status(200).json(socials)
 }
-
 
 const findOrCreateSocials=async (req,res)=>{
     let {symbol}=req.body
     let socials=await Equity.find({symbol})
-    res.status(200).json(socials)
+    if(!socials[0]){createSocials(symbol,res)}
+    else{res.status(200).json(socials)}
 }
 
 
-Equity.f
+
 
 
 
