@@ -38,11 +38,18 @@ const createSocials=async (symbol,res)=>{
     const socials=await Equity.create({symbol})
     res.status(200).json(socials)
 }
-const findOrCreateSocials=async (req,res)=>{
+const getOrCreateSocials=async (req,res)=>{
     const {symbol}=req.body
     const socials=await Equity.find({symbol})
     if(!socials[0]){createSocials(symbol,res)}
     else{res.status(200).json(socials)}
+}
+
+/* get all ticker socials */
+const getAllSocials=async (req,res)=>{
+    const symbol=req.body
+    const allSocials=await Equity.find({})
+    es.status(200).json(allSocials)
 }
 
 
@@ -54,5 +61,6 @@ module.exports={
     getHistoricalData,
     getSummary,
     getSymbolNews,
-    findOrCreateSocials
+    getOrCreateSocials,
+    getAllSocials
 } 
