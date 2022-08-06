@@ -18,13 +18,17 @@ router.get('/equity/socials',equity.getOrCreateSocials)
 router.get('/all-socials',equity.getAllSocials)
 
 
-
 /* account(s) */
 router.get('/account/all',account.getAllAcounts)
 router.get('/account/find/:id',account.getAccountById)
+router.post('/account/create',account.createAccount)
 
 
-router.get('/account/create',account.getOrCreateAccount)
+
+
+
+
+//router.get('/account/create',account.getOrCreateAccount)
 router.get('/account/update',account.updateAccount)
 
 
