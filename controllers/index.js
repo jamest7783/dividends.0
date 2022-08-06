@@ -1,5 +1,6 @@
-const equities=require('./equityController')
+const equity=require('./equityController')
+const account=require('./accountController')
 
 module.exports={
-    equities
+    equity,account
 }

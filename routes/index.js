@@ -1,15 +1,27 @@
 const {Router}=require('express')
 const router=Router()
+const {equity,account}=require('../controllers')
 
-const {equities}=require('../controllers')
-const { getSummary } = require('../controllers/equityController')
 
-router.get('/',(req,res)=>res.send('Hit Root!'))
-router.get('/historical',equities.getHistoricalData)
-router.get('/summary',equities.getSummary)
-router.get('/news',equities.getSymbolNews)
-router.get('/socials',equities.getOrCreateSocials)
-router.get('/all-socials',equities.getAllSocials)
+
+/* test connection to root */
+router.get('/test',(req,res)=>res.send('Hit Root!'))
+
+/* single equity */
+router.get('/equity/historical',equity.getHistoricalData)
+router.get('/equity/summary',equity.getSummary)
+router.get('/equity/news',equity.getSymbolNews)
+router.get('/equity/socials',equity.getOrCreateSocials)
+
+
+/* all equities */
+router.get('/all-socials',equity.getAllSocials)
+
+
+
+/* account(s) */
+router.get('/account/create',account.getOrCreateAccount)
+
 
 module.exports=router
 

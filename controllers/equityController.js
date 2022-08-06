@@ -41,8 +41,8 @@ const createSocials=async (symbol,res)=>{
 const getOrCreateSocials=async (req,res)=>{
     const {symbol}=req.body
     const socials=await Equity.find({symbol})
-    if(!socials[0]){createSocials(symbol,res)}
-    else{res.status(200).json(socials)}
+    !socials[0]?createSocials(symbol,res):
+    res.status(200).json(socials)
 }
 
 /* get all ticker socials */
