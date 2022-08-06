@@ -1,10 +1,10 @@
 const yahooFinance=require('yahoo-finance')
-let googleNewsAPI = require("google-news-json");
+const googleNewsAPI = require("google-news-json");
 const Equity=require('../models/equity')
 
 /* get ticker historical data */
 const getHistoricalData=async (req,res)=>{
-    let {symbol,from,to,period}=req.body 
+    const {symbol,from,to,period}=req.body 
     await yahooFinance.historical({
         symbol,from,to,period
     },function(error,quotes){
@@ -16,7 +16,7 @@ const getHistoricalData=async (req,res)=>{
 
 /* get ticker snapshot summary */
 const getSummary=async (req,res)=>{
-    let {symbol}=req.body
+    const {symbol}=req.body
     await yahooFinance.quote({
         symbol,modules:['price','summaryDetail']
     },function(error,summary){
@@ -28,19 +28,19 @@ const getSummary=async (req,res)=>{
 
 /* get current ticker news */
 const getSymbolNews=async (req,res)=>{
-    let {symbol}=req.body
-    let news=await googleNewsAPI.getNews(googleNewsAPI.SEARCH,symbol,"en-GB")
+    const {symbol}=req.body
+    const news=await googleNewsAPI.getNews(googleNewsAPI.SEARCH,symbol,"en-GB")
     res.status(200).json(news) 
 }
 
+/* get current ticker socials or create them */
 const createSocials=async (symbol,res)=>{
-    let socials=await Equity.create({symbol})
+    const socials=await Equity.create({symbol})
     res.status(200).json(socials)
 }
-
 const findOrCreateSocials=async (req,res)=>{
-    let {symbol}=req.body
-    let socials=await Equity.find({symbol})
+    const {symbol}=req.body
+    const socials=await Equity.find({symbol})
     if(!socials[0]){createSocials(symbol,res)}
     else{res.status(200).json(socials)}
 }
