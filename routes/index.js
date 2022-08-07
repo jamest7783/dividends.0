@@ -12,17 +12,16 @@ router.get('/equity/news',equity.getSymbolNews)
 
 /* equity socials */
 router.post('/socials/create',equity.createSocials)
-//router.get('/socials')
-//router.get('/equity/socials-all',equity.getAllSocials)
-//router.put('/equity/socials/update/:id',equity.updateSocials)
-//router.delete('/socials/delete')
+router.get('/socials',equity.getAllSocials)
+router.get('/socials/find',equity.getSocials)
+router.delete('/socials/delete',equity.deleteSocials)
 
 /* account */
-router.get('/account/all',account.getAllAcounts)
+router.get('/accounts',account.getAllAcounts)
 router.get('/account/:id',account.getAccountById)
 router.post('/account/create',account.createAccount)
-router.put('/account/update/:id',account.updateAccount)
-router.delete('/account/delete/:id',account.deleteAccount)
+router.put('/account/update/:id',account.updateAccount)//
+router.delete('/account/delete/:id',account.deleteAccount)//
 
 
 

@@ -28,37 +28,36 @@ const getSymbolNews=async (req,res)=>{
     const news=await googleNewsAPI.getNews(googleNewsAPI.SEARCH,symbol,"en-GB")
     res.status(200).json(news) 
 }
+
+
 /* socials */
 const createSocials=async (req,res)=>{
-    const socials=await Equity.create({symbol})
-    res.status(200).json(socials)
-}
-
-
-
-/*
-const getOrCreateSocials=async (req,res)=>{
     const {symbol}=req.body
-    const socials=await Equity.find({symbol})
-    !socials[0]?createSocials(symbol,res):
-    res.status(200).json(socials) 
+    const newSocials=await Equity.create({symbol})
+    res.status(200).json(newSocials)
 }
 const getAllSocials=async (req,res)=>{
     const allSocials=await Equity.find()
-    res.status(200).json(allSocials)
+    res.status(200).json(allSocials) 
 }
-const updateSocials=async (req,res)=>{
-    const {id}=req.params
-    const updatedSocials=await Account.findByIdAndUpdate(id,req.body,{new:true}) 
-    res.status(200).json(updatedSocials)
+const getSocials=async (req,res)=>{
+    const {symbol}=req.body
+    const socials=await Equity.find({symbol})
+    res.status(200).json(socials) 
 }
-*/
+const deleteSocials=async (req,res)=>{
+    const {symbol}=req.body
+    const deletedSocials=await Equity.findOneAndDelete({symbol})
+    res.status(200).json(deletedSocials)
+}
 
 
 module.exports={
     getHistoricalData,
     getSummary,
     getSymbolNews,
-    createSocials
-
+    createSocials,
+    getSocials,
+    getAllSocials,
+    deleteSocials
 } 

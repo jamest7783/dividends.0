@@ -22,7 +22,7 @@ const updateAccount=async (req,res)=>{
     res.status(200).json({accountWithUpdatedName})
 }
 const deleteAccount=async (req,res)=>{
-    const {id}=re.params
+    const {id}=req.params
     const deletedAccount=await Account.findByIdAndDelete(id)
     res.status(200).json(deletedAccount)
 }
