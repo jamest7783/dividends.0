@@ -3,6 +3,7 @@ const Schema=mongoose.Schema
 
 const Thread=new Schema(
     {
+        equity:{type:Schema.Types.ObjectId,ref:'Equity',default:''},
         creator:{type:Schema.Types.ObjectId,ref:'Account',default:''},
         title:{type:String,required:true},
         replies:[{type:Schema.Types.ObjectId,ref:'Reply',default:''}]
