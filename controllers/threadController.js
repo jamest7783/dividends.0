@@ -4,12 +4,6 @@ const Equity=require('../models/equity')
 const Account=require('../models/account')
 
 
-//const createThread=async (req,res)=>{
-//    const {creator,title}=req.body
-//    const newThread=await Thread.create({creator,title})
-//    res.status(200).json(newThread)
-//}
-
 
 const createThread=async (req,res)=>{
     const {equityId,accountId,title}=req.body
@@ -28,11 +22,11 @@ const createThread=async (req,res)=>{
 
 
 module.exports={
-    createThread
+    createThread 
     //updateThread,
     //deleteThread
 }
 
-
+ 
 
  
