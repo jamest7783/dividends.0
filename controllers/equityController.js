@@ -45,6 +45,11 @@ const getSocials=async (req,res)=>{
     const socials=await Equity.find({symbol})
     res.status(200).json(socials) 
 }
+const updateSocials=async (req,res)=>{
+    const {id}=req.params
+    const updatedSocials=await Equity.findByIdAndUpdate(id,req.body,{new:true})
+    res.status(200).json(updatedSocials)
+}
 const deleteSocials=async (req,res)=>{
     const {symbol}=req.body
     const deletedSocials=await Equity.findOneAndDelete({symbol})
@@ -59,5 +64,6 @@ module.exports={
     createSocials,
     getSocials,
     getAllSocials,
+    updateSocials,
     deleteSocials
 } 

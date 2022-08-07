@@ -14,18 +14,19 @@ router.get('/equity/news',equity.getSymbolNews)
 router.post('/socials/create',equity.createSocials)
 router.get('/socials',equity.getAllSocials)
 router.get('/socials/find',equity.getSocials)
+router.put('/socials/update',equity.updateSocials)
 router.delete('/socials/delete',equity.deleteSocials)
 
 /* account */
 router.get('/accounts',account.getAllAcounts)
 router.get('/account/:id',account.getAccountById)
 router.post('/account/create',account.createAccount)
-router.put('/account/update/:id',account.updateAccount)//
-router.delete('/account/delete/:id',account.deleteAccount)//
+router.put('/account/update/:id',account.updateAccount)
+router.delete('/account/delete/:id',account.deleteAccount)
 
 
 
-
+ 
 
 
 /* thread */
