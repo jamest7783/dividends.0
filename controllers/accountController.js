@@ -16,14 +16,16 @@ const createAccount=async (req,res)=>{
     const newAccount=await Account.create({name,icon})
     res.status(200).json(newAccount)
 }
-const updateAccountName=async (req,res)=>{
+const updateAccount=async (req,res)=>{
     const {id}=req.params
-    const accountWithUpdatedName=await Account.findByIdAndUpdate(
-        id,req.body,{new:true})
+    const accountWithUpdatedName=await Account.findByIdAndUpdate(id,req.body,{new:true})
     res.status(200).json({accountWithUpdatedName})
 }
-
-// name,icon,reputation,threads,replies,watchlist
+const deleteAccount=async (req,res)=>{
+    const {id}=re.params
+    const deletedAccount=await Account.findByIdAndDelete(id)
+    res.status(200).json(deletedAccount)
+}
 
 
 
@@ -32,7 +34,8 @@ module.exports={
     getAllAcounts,
     getAccountById,
     createAccount,
-    updateAccountName
+    updateAccount,
+    deleteAccount
 
 }
 
