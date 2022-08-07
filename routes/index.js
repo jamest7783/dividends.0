@@ -1,6 +1,6 @@
 const {Router}=require('express')
 const router=Router()
-const {equity,account}=require('../controllers')
+const {equity,account,thread}=require('../controllers')
 
 /* test connection to root */
 router.get('/test',(req,res)=>res.send('Hit Root!'))
@@ -24,12 +24,14 @@ router.post('/account/create',account.createAccount)
 router.put('/account/update/:id',account.updateAccount)
 router.delete('/account/delete/:id',account.deleteAccount)
 
-
-
- 
-
-
 /* thread */
+router.post('/thread/create',thread.createThread)
+// NO .get b/c read from .populate() in equity controllers
+//router.put('/thread/update',thread.updateThread)
+//router.delete('/thread/delete',thread.deleteThread)
+
+
+
 //router.post('/thread/create',thread.createThread)
 //router.get('/thread/:id',thread.getThread)
 //router.put('/thread/update/:id',thread.updateThread)

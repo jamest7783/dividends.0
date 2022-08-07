@@ -29,7 +29,6 @@ const getSymbolNews=async (req,res)=>{
     res.status(200).json(news) 
 }
 
-
 /* socials */
 const createSocials=async (req,res)=>{
     const {symbol}=req.body

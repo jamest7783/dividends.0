@@ -1,6 +1,5 @@
 const Account=require('../models/account')
 
-
 const getAllAcounts=async (req,res)=>{
     const allAccounts=await Account.find()
     res.status(200).json(allAccounts)
@@ -27,16 +26,12 @@ const deleteAccount=async (req,res)=>{
     res.status(200).json(deletedAccount)
 }
 
-
-
-
 module.exports={
     getAllAcounts,
     getAccountById,
     createAccount,
     updateAccount,
     deleteAccount
-
 }
 
 
