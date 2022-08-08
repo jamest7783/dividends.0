@@ -3,10 +3,10 @@ const Schema=mongoose.Schema
 
 const Thread=new Schema(
     {
-        equity:{type:Schema.Types.ObjectId,ref:'Equity',default:''},
-        account:{type:Schema.Types.ObjectId,ref:'Account',default:''},
+        equity:{type:Schema.Types.ObjectId,ref:'Equity'},
+        account:{type:Schema.Types.ObjectId,ref:'Account'},
         title:{type:String,required:true},
-        replies:[{type:Schema.Types.ObjectId,ref:'Reply',default:''}]
+        replies:[{type:Schema.Types.ObjectId,ref:'Reply'}]
     },
     {timestamps:true}
 )
