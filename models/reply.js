@@ -5,8 +5,8 @@ const Reply=new Schema(
     {
         author:{type:Schema.Types.ObjectId,ref:'Account',default:''},
         text:{type:String,required:true},
-        upVotes:{type:Number,required:true},
-        downVotes:{type:Number,required:true}
+        upVotes:{type:Number,required:true,default:0},
+        downVotes:{type:Number,required:true,default:0}
     },
     {timestamps:true}
 )

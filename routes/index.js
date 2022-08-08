@@ -13,7 +13,7 @@ router.get('/equity/news',equity.getSymbolNews)
 /* equity socials */
 router.post('/socials/create',equity.createSocials)
 router.get('/socials',equity.getAllSocials)
-router.get('/socials/find',equity.getSocials)
+router.get('/socials/find',equity.getSocials) // <-- uses req.body instead of ID 
 router.put('/socials/update',equity.updateSocials)
 router.delete('/socials/delete',equity.deleteSocials)
 
@@ -26,28 +26,14 @@ router.delete('/account/delete/:id',account.deleteAccount)
 
 /* thread */
 router.post('/thread/create',thread.createThread)
-// NO .get b/c read from .populate() in equity controllers
-//router.put('/thread/update',thread.updateThread)
-//router.delete('/thread/delete',thread.deleteThread)
-
-
-
-//router.post('/thread/create',thread.createThread)
-//router.get('/thread/:id',thread.getThread)
-//router.put('/thread/update/:id',thread.updateThread)
-//router.delete('/thread/delete/:id',thread.deleteThread)
+router.delete('/thread/delete',thread.deleteThread)
 
 /* reply */
 //router.post('/reply/create',reply.createReply)
+//router.get()
+//router.post('/reply/create',reply.createReply)
 //router.put('/reply/update/:id',reply.updateReply)
 //router.delete('/reply/delete/:id',reply.deleteReply)
-
-
-
-
-
-/* reply */
-
 
 module.exports=router
 
