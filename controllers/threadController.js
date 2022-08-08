@@ -7,7 +7,7 @@ const createThread=async (req,res)=>{
     const {equityId,accountId,title}=req.body
     const equity=await Equity.findById(equityId)
     const account=await Account.findById(accountId)
-    const newThread=await Thread.create({equity:equityId,creator:accountId,title})
+    const newThread=await Thread.create({equity:equity._id,creator:account,title})
     equity.threads.push(newThread)
     equity.save()
     account.threads.push(newThread)

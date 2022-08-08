@@ -17,8 +17,8 @@ const createAccount=async (req,res)=>{
 }
 const updateAccount=async (req,res)=>{
     const {id}=req.params
-    const accountWithUpdatedName=await Account.findByIdAndUpdate(id,req.body,{new:true})
-    res.status(200).json({accountWithUpdatedName})
+    const updatedAccount=await Account.findByIdAndUpdate(id,req.body,{new:true})
+    res.status(200).json({updateAccount})
 }
 const deleteAccount=async (req,res)=>{
     const {id}=req.params

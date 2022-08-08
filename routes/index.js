@@ -1,6 +1,6 @@
 const {Router}=require('express')
 const router=Router()
-const {equity,account,thread}=require('../controllers')
+const {equity,account,thread,reply}=require('../controllers')
 
 /* test connection to root */
 router.get('/test',(req,res)=>res.send('Hit Root!'))
@@ -29,11 +29,10 @@ router.post('/thread/create',thread.createThread)
 router.delete('/thread/delete',thread.deleteThread)
 
 /* reply */
-//router.post('/reply/create',reply.createReply)
-//router.get()
-//router.post('/reply/create',reply.createReply)
-//router.put('/reply/update/:id',reply.updateReply)
-//router.delete('/reply/delete/:id',reply.deleteReply)
+router.post('/reply/create',reply.createReply)
+router.delete('/reply/delete/:id',reply.deleteReply)
+router.put('/reply/update/:id',reply.updateReply)
+
 
 module.exports=router
 
