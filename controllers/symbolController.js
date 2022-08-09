@@ -5,9 +5,27 @@ const Symbol=require('../models/symbol')
 
 const createSymbol=async (req,res)=>{
     const {symbol}=req.body
-    const newSymbol=await Symbol.create({symbol})
-    res.status(200).json({newSymbol})
+    const createdSymbol=await Symbol.create({symbol})
+    res.status(200).json({createdSymbol})
 }
+
+
+
+const findOrCreateSymbol=async (req,res)=>{
+    const {symbol}=req.body
+    const foundSymbol=await Symbol.find({symbol})
+    if(foundSymbol){res.status(200).json(foundSymbol)}
+    else{
+        const createdSymbol=await Symbol.create({symbol})
+        res.status(200).json(createdSymbol)
+    }
+}
+
+
+
+
+
+
 
 const getQuotes=async (req,res)=>{
     const {symbol}=req.body
