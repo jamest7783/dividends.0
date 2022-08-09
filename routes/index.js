@@ -32,7 +32,7 @@ router.put('/reply/update/:id',reply.updateReply)
 
 
 router.post('/symbol/create',symbol.createSymbol)
-router.put('/symbol/update/:id',symbol.updateSymbol)
+router.put('/symbol/quotes',symbol.getQuotes)
 
 
 module.exports=router

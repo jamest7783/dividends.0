@@ -4,30 +4,36 @@ const Symbol=require('../models/symbol')
 
 
 const createSymbol=async (req,res)=>{
-    const newSymbol=await Symbol.create({symbol:'tsla'})
+    const {symbol}=req.body
+    const newSymbol=await Symbol.create({symbol})
     res.status(200).json({newSymbol})
 }
-const updateSymbol=async (req,res)=>{
-    const {id}=req.params
-    const foundSymbol=await Symbol.findById(id)
- 
+
+const getQuotes=async (req,res)=>{
+    const {symbol}=req.body
+    const foundSymbol=await Symbol.find({symbol})
     await yahooFinance.historical({
         symbol:"TSLA",from:"2012-01-01",to:"2012-12-31",period:"d"
     },function(error,quotes){
         if(error){throw error}
         if(!quotes[0]){res.status(200).json({alert:'Ticker & Ticker Quotes not found.'})}
-        else{
-            foundSymbol.data.quotes=quotes
-            foundSymbol.save()
-        }
+        else{ 
+             
+            const appendQuotes=async ()=>{
+              
+                 foundSymbol[0].data.quotes=quotes
+                //foundSymbol.save()
+            }
+            appendQuotes() 
+        } 
     })
 
     res.status(200).json(foundSymbol)
 }
-
+ 
 
 
 module.exports={
     createSymbol,
-    updateSymbol
+    getQuotes
 }   
