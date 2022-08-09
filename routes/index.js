@@ -1,13 +1,12 @@
 const {Router}=require('express')
 const router=Router()
-const {equity,account,thread,reply}=require('../controllers')
+const {equity,account,thread,reply,symbol}=require('../controllers')
 
 router.get('/test',(req,res)=>res.send('Hit Root!'))
 
 router.get('/equity/historical',equity.getHistoricalData)   
 router.get('/equity/summary',equity.getSummary)           
 router.get('/equity/news',equity.getSymbolNews)  
-
 router.post('/socials/create',equity.createSocials)
 router.get('/socials',equity.getAllSocials)
 router.get('/socials/find',equity.getSocials)  
@@ -29,6 +28,14 @@ router.delete('/reply/delete/:id',reply.deleteReply)
 router.put('/reply/update/:id',reply.updateReply)
 
 
+
+
+
+router.post('/symbol/create',symbol.createSymbol)
+router.put('/symbol/update/:id',symbol.updateSymbol)
+
+
 module.exports=router
 
 
+ 

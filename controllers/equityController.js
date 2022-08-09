@@ -9,8 +9,16 @@ const getHistoricalData=async (req,res)=>{
         symbol,from,to,period
     },function(error,quotes){
         if(error){throw error}
-        !quotes[0]?res.status(200).json({alert:'Ticker not found.'}):
-        res.status(200).json(quotes)
+        if(!quotes[0]){res.status(200).json({alert:'Ticker & Ticker Quotes not found.'})}
+        else{
+            const appendHistory=async ()=>{
+                const equityWithHistoricalData=await Equity.find({symbol})
+                equityWithHistoricalData.historicalData={alert:'whoooho'}
+                //equityWithHistoricalData.save()
+                res.status(200).json(equityWithHistoricalData.historialData)
+            }
+            appendHistory()
+        }
     })
 }
 const getSummary=async (req,res)=>{

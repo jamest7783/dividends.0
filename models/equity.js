@@ -6,7 +6,7 @@ const Equity=new Schema(
         symbol:{type:String,required:true},
         snapshot:{type:Object},
         news:{type:Object},
-        historicalData:{type:Object},
+        historicalData:{type:Object,required:true,default:{alert:'this is an object'}},
         threads:[{type:Schema.Types.ObjectId,ref:'Thread'}],
         follows:[{type:Schema.Types.ObjectId,ref:'Account'}]
     },
