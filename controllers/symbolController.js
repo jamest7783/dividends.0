@@ -9,9 +9,20 @@ const createSymbol=async (req,res)=>{
 }
 const updateSymbol=async (req,res)=>{
     const {id}=req.params
-    const updatedSymbol=await Symbol.findById(id)
+    const foundSymbol=await Symbol.findById(id)
+ 
+    await yahooFinance.historical({
+        symbol:"TSLA",from:"2012-01-01",to:"2012-12-31",period:"d"
+    },function(error,quotes){
+        if(error){throw error}
+        if(!quotes[0]){res.status(200).json({alert:'Ticker & Ticker Quotes not found.'})}
+        else{
+            foundSymbol.data.quotes=quotes
+            foundSymbol.save()
+        }
+    })
 
-    res.status(200).json(updatedSymbol)
+    res.status(200).json(foundSymbol)
 }
 
 
